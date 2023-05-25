@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css"
+      integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU"
+      crossorigin="anonymous"
+    />
+
+    <title>Form</title>
+
+    <style>
+      body {
+        height: 100vh;
+        background: linear-gradient(to bottom right, #d81620, #fd3a2d, #fe612c, #ff872c, #ffa12c);
+        font-family: 'Open Sans';
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      h2 {
+        text-align: center;
+        color: #f5f5f5;
+        padding-top: 20px;
+        font-family: Montserrat;
+        font-weight: bold;
+      }
+
+      .fContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .wrapper {
+        justify-content: space-between;
+        align-items: center;
+        width: 1500px;
+        height: 50px;
+        background-color: #222;
+        display: flex;
+        font-size: 20px;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        padding: 15px;
+      }
+
+      .name {
+        color: #ff635b;
+        font-weight: 700;
+        padding-left: 700;
+      }
+
+      .navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        margin-top: 15px;
+      }
+
+      .navigation > li {
+        list-style-type: none;
+        padding: 15px;
+      }
+
+      .navigation > li > a {
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+      }
+
+      .active {
+        background-color: #ff635b;
+        padding: 3px;
+      }
+
+      .navigation > li > img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+      }
+
+      table {
+        box-sizing: border-box;
+        max-width: 900px;
+        background-color: #efefef;
+        border-collapse: collapse;
+        font-size: 16px;
+        padding: 15px;
+        overflow: auto;
+        margin-top: 1rem;
+        white-space: nowrap;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      thead {
+        padding: 3px;
+        height: 25px;
+      }
+
+      tr {
+        padding: 3px;
+        height: 25px;
+      }
+
+      th {
+        background-color: rgb(48, 48, 48);
+        color: rgb(26, 26, 26);
+        height: 30px;
+      }
+
+      .form-label {
+        color: #efefef;
+      }
+
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+
+      .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+      }
+
+      .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        margin-right: 5px;
+      }
+
+      .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+      }
+
+      .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+      }
+
+      .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+      }
+
+      .text-success {
+        color: #28a745;
+      }
+
+      #flashMessage {
+        display: none;
+        margin-top: 20px;
+        padding: 10px;
+        color: #155724;
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fContainer">
+      <nav class="wrapper">
+        <div class="brand">
+          <div class="name">AJAX & DOM dengan JS</div>
+        </div>
+        <ul class="navigation">
+          <li>
+            <a
+              href="/"
+              class="active"
+              >Aghnia & Briegitta</a
+            >
+          </li>
+          <li>
+            <img
+              src="https://i.postimg.cc/L8vNr2t0/AB.jpg"
+              alt="..."
+            />
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container">
+      <h2>Form Pendaftaran</h2>
+      <form id="myForm">
+        <div class="mb-3">
+          <label
+            for="numericInput"
+            class="form-label"
+            >Number:</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="numericInput"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label
+            for="textInput"
+            class="form-label"
+            >Text:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="textInput"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Submit
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="resetBtn"
+        >
+          Reset
+        </button>
+      </form>
+      <div id="result"></div>
+    </div>
+    <script
+      src="bootstrap-5.3.0-alpha3-dist/bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        var dataArray = []; // Array to store data
+
+        // Function to update the table
+        function updateTable() {
+          var tableHTML = '<table class="table" style="display: none;"><thead><tr><th>Index</th><th>Data</th><th>Actions</th></tr></thead><tbody>';
+          for (var i = 0; i < dataArray.length; i++) {
+            var number = i; // Increment number by 1
+            tableHTML +=
+              '<tr><td>' +
+              number +
+              '</td><td>' +
+              dataArray[i] +
+              '</td><td><button class="btn btn-sm btn-danger delete-btn" data-index="' +
+              i +
+              '">Delete</button><button class="btn btn-sm btn-secondary edit-btn" data-index="' +
+              i +
+              '">Edit</button></td></tr>';
+          }
+          tableHTML += '</tbody></table>';
+          $('#result').html(tableHTML);
+
+          // Apply fadeIn animation to the table
+          $('#result table').fadeIn(2000);
+        }
+
+        // Add event listener to form submit
+        $('#myForm').submit(function (event) {
+          event.preventDefault();
+
+          // Retrieve form data
+          var numericData = $('#numericInput').val();
+          var textData = $('#textInput').val();
+
+          // Send data to PHP script using AJAX
+          $.ajax({
+            url: 'process.php',
+            type: 'POST',
+            data: { numericData: numericData, textData: textData },
+            dataType: 'json',
+            success: function (response) {
+              // Convert JSON response to an array
+              dataArray = response;
+
+              // Update the table with animation
+              updateTable();
+
+              // Display flash message
+              $('#flashMessage').text('Data submitted successfully.').addClass('text-success').show();
+            },
+            error: function () {
+              alert('An error occurred during processing.');
+            },
+          });
+        });
+
+        // Add event listener to delete button
+        $('#result').on('click', '.delete-btn', function () {
+          var index = $(this).data('index');
+
+          // Display confirmation dialog
+          if (confirm('Are you sure you want to delete this data?')) {
+            dataArray.splice(index, 1);
+            updateTable();
+
+            // Display flash message
+            $('#flashMessage').text('Data deleted successfully.').addClass('text-success').show();
+          }
+        });
+
+        // Add event listener to edit button
+        $('#result').on('click', '.edit-btn', function () {
+          var index = $(this).data('index');
+          var newData = prompt('Enter new data:');
+
+          // Update data if the input is not empty
+          if (newData !== null && newData.trim() !== '') {
+            dataArray[index] = newData;
+            updateTable();
+
+            // Display flash message
+            $('#flashMessage').text('Data updated successfully.').addClass('text-success').show();
+          }
+        });
+
+        // Add event listener to reset button
+        $('#resetBtn').click(function () {
+          // Display confirmation dialog
+          if (confirm('Are you sure you want to reset all data?')) {
+            dataArray = [];
+            updateTable();
+
+            // Display flash message
+            $('#flashMessage').text('Data reset successfully.').addClass('text-success').show();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
